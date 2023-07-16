@@ -1,0 +1,42 @@
+int main() {
+    int no_of_rects;
+    double  a, b;
+
+    printf("Number of subdivisions = ");
+    scanf("%d", &no_of_rects);
+
+    printf("a = ");
+    scanf("%lf", &a);
+
+    printf("b = ");
+    scanf("%lf", &b);
+
+    double dx = (b-a)/no_of_rects;
+
+    double rectangular_riemann_sum = 0;
+
+    int i;
+    for (i=1;i<=no_of_rects;i++) {
+        rectangular_riemann_sum +=  (f(a + (i-1)*dx)*dx);
+    }
+
+    double trapezoidal_riemann_sum = 0;
+
+    int j;
+    for (j=1;j<=no_of_rects;j++) {
+        trapezoidal_riemann_sum += (1/2)*(dx)*(f(a + (j-1)*dx) + f(a + j*dx));
+        printf("trapezoidal_riemann_sum: %lf\n", trapezoidal_riemann_sum);
+    }
+
+    double exact_integral = F(b) - F(a);
+    double rect_error = exact_integral - rectangular_riemann_sum;
+    double trap_error = exact_integral - trapezoidal_riemann_sum;
+
+    printf("\n\nExact Integral: %lf", exact_integral);
+    printf("\nRectangular Riemann Sum: %lf", rectangular_riemann_sum);
+    printf("\nTrapezoidal Riemann Sum: %lf", trapezoidal_riemann_sum);
+    printf("\n\nRectangular Error: %lf", rect_error);
+    printf("\nTrapezoidal Error: %lf\n", trap_error);
+
+    return 0;
+}
